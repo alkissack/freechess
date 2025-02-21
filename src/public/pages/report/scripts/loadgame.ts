@@ -42,12 +42,26 @@ function generateGameListing(game: Game): JQuery<HTMLDivElement> {
 
     let players = $("<span>");
     players.html(getPlayersString(game));
+    // https://github.com/WintrCat/freechess/pull/58/commits/edf35b2c39cd6ead45f8e2418bd77679e8068bc4
+    let winner = $("<span>");
+    winner.html(game.winner);
 
     listingContainer.append(timeClass);
     listingContainer.append(players);
-
+    listingContainer.append(winner);  // https://github.com/WintrCat/freechess/pull/58/commits/edf35b2c39cd6ead45f8e2418bd77679e8068bc4
+    
     return listingContainer;
 
+}
+// https://github.com/WintrCat/freechess/pull/58/commits/edf35b2c39cd6ead45f8e2418bd77679e8068bc4
+function getMatchWinnerChessCom(game: any): string {
+    if (game?.white?.result == "stalemate") {
+        return "draw"
+    }
+    if (game.white.result == "win") {
+        return game.white.username
+    }
+    return game.black.username
 }
 
 async function fetchChessComGames(username: string) {
@@ -75,7 +89,9 @@ async function fetchChessComGames(username: string) {
                     rating: game.black.rating.toString()
                 },
                 timeClass: game["time_class"],
-                pgn: game.pgn
+                // pgn: game.pgn
+                pgn: game.pgn,
+                winner: getMatchWinnerChessCom(game)
             });
 
             $("#games-list").append(gameListing);
@@ -84,6 +100,17 @@ async function fetchChessComGames(username: string) {
         $("#games-list").html("No games found.");
     }
 
+}
+
+// https://github.com/WintrCat/freechess/pull/58/commits/edf35b2c39cd6ead45f8e2418bd77679e8068bc4
+function getMatchWinnerLichess(game: any): string {
+    if (game?.status == "draw") {
+        return "draw"
+    }
+    if (game?.winner == "white") {
+        return game.players.white.user.name
+    }
+    return game.players.black.user.name
 }
 
 async function fetchLichessGames(username: string) {
@@ -133,7 +160,9 @@ async function fetchLichessGames(username: string) {
                     aiLevel: game.players.black.aiLevel
                 },
                 timeClass: game.speed,
-                pgn: game.pgn
+                // pgn: game.pgn  // https://github.com/WintrCat/freechess/pull/58/commits/edf35b2c39cd6ead45f8e2418bd77679e8068bc4
+                pgn: game.pgn,
+                winner: getMatchWinnerLichess(game),
             });
 
             $("#games-list").append(gameListing);
