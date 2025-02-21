@@ -186,6 +186,7 @@ async function evaluate() {
             evaluatedPositions = positions;
             ongoingEvaluation = false;
 
+            report();  //EAK 
             return;
         }
 
