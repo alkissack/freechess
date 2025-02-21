@@ -61,38 +61,38 @@ router.post("/parse", async (req, res) => {
 });
 
 router.post("/report", async (req, res) => {
-    // ///////// NEW
+    // EAK ///////// NEW
     let { positions }: ReportRequestBody = req.body;
 
     if (!positions) {
         return res.status(400).json({ message: "Missing parameters." });
     }
-    // ///////// WAS 
-    // let { positions, captchaToken }: ReportRequestBody = req.body;
+    // EAK ///////// WAS 
+    // EAK let { positions, captchaToken }: ReportRequestBody = req.body;
 
-    // if (!positions || !captchaToken) {
-    //     return res.status(400).json({ message: "Missing parameters." });
-    // }
+    // EAK if (!positions || !captchaToken) {
+    // EAK     return res.status(400).json({ message: "Missing parameters." });
+    // EAK }
 
-    // // Verify CAPTCHA response token
-    // if (process.env.RECAPTCHA_SECRET) {
-    //     try {
-    //        let captchaResponse = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/x-www-form-urlencoded"
-    //             },
-    //             body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`
-    //         });
-    // 
-    //        let captchaResult = await captchaResponse.json();
-    //         if (!captchaResult.success) {
-    //             return res.status(400).json({ message: "You must complete the CAPTCHA." });
-    //         }
-    //     } catch (err) {
-    //         return res.status(500).json({ message: "Failed to verify CAPTCHA." });
-    //     }
-    // }
+    // EAK // Verify CAPTCHA response token
+    // EAK if (process.env.RECAPTCHA_SECRET) {
+    // EAK     try {
+    // EAK        let captchaResponse = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    // EAK             method: "POST",
+    // EAK             headers: {
+    // EAK                 "Content-Type": "application/x-www-form-urlencoded"
+    // EAK             },
+    // EAK             body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`
+    // EAK         });
+    // EAK 
+    // EAK        let captchaResult = await captchaResponse.json();
+    // EAK         if (!captchaResult.success) {
+    // EAK             return res.status(400).json({ message: "You must complete the CAPTCHA." });
+    // EAK         }
+    // EAK     } catch (err) {
+    // EAK         return res.status(500).json({ message: "Failed to verify CAPTCHA." });
+    // EAK     }
+    // EAK }
 
     // Generate report
     try {
