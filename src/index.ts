@@ -24,6 +24,12 @@ app.get("/privacy", async (req, res) => {
     res.sendFile(path.resolve("src/public/pages/privacy/index.html"));
 });
 
-app.listen(process.env.PORT, () => {
-    console.log("Server running.");
+// https://github.com/WintrCat/freechess/pull/56/commits/53b41f91e6263fad4a7f76140e91f094607733b7
+//if not port in env, set 5000
+const port = process.env.PORT == undefined? 5000: process.env.PORT
+
+app.listen(port, () => {
+    console.log("Server running on :", port);
+// app.listen(process.env.PORT, () => {
+//     console.log("Server running.");
 });
