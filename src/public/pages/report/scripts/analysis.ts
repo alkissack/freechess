@@ -174,14 +174,14 @@ async function evaluate() {
 
             logAnalysisInfo("Evaluation complete.");
             $("#evaluation-progress-bar").val(100);
-            \// EAK $(".g-recaptcha").css("display", "inline");
-            \// EAK if(!document.hasFocus()){
-            \// EAK     let snd = new Audio("static/media/ping.mp3");
-            \// EAK     snd.play();
-            \// EAK }
-            \// EAK $("#secondary-message").html(
-            \// EAK     "Please complete the CAPTCHA to continue.",
-            \// EAK );
+            // EAK $(".g-recaptcha").css("display", "inline");
+            // EAK if(!document.hasFocus()){
+            // EAK     let snd = new Audio("static/media/ping.mp3");
+            // EAK     snd.play();
+            // EAK }
+            // EAK $("#secondary-message").html(
+            // EAK     "Please complete the CAPTCHA to continue.",
+            // EAK );
 
             evaluatedPositions = positions;
             ongoingEvaluation = false;
@@ -297,8 +297,8 @@ function loadReportCards() {
 async function report() {
     // Remove CAPTCHA
     
-    \// EAK $(".g-recaptcha").css("display", "none");
-    \// EAK $("#secondary-message").html("");
+    // EAK $(".g-recaptcha").css("display", "none");
+    // EAK $("#secondary-message").html("");
     $("#evaluation-progress-bar").attr("value", null);
     logAnalysisInfo("Generating report...");
     $("#status-message").css("display", "none");
@@ -317,7 +317,7 @@ async function report() {
                     }
                     return pos;
                 }),
-                \// EAK captchaToken: grecaptcha.getResponse() || "none",
+                // EAK captchaToken: grecaptcha.getResponse() || "none",
             }),
         });
 
