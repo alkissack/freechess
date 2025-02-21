@@ -26,8 +26,8 @@ function logAnalysisError(message: string) {
 
 async function evaluate() {
     // Remove and reset CAPTCHA, remove report cards, display progress bar
-    $(".g-recaptcha").css("display", "none");
-    grecaptcha.reset();
+    // EAK $(".g-recaptcha").css("display", "none");
+    // EAK grecaptcha.reset();
 
     $("#report-cards").css("display", "none");
     $("#evaluation-progress-bar").css("display", "none");
@@ -174,14 +174,14 @@ async function evaluate() {
 
             logAnalysisInfo("Evaluation complete.");
             $("#evaluation-progress-bar").val(100);
-            $(".g-recaptcha").css("display", "inline");
-            if(!document.hasFocus()){
-                let snd = new Audio("static/media/ping.mp3");
-                snd.play();
-            }
-            $("#secondary-message").html(
-                "Please complete the CAPTCHA to continue.",
-            );
+            \\ EAK $(".g-recaptcha").css("display", "inline");
+            \\ EAK if(!document.hasFocus()){
+            \\ EAK     let snd = new Audio("static/media/ping.mp3");
+            \\ EAK     snd.play();
+            \\ EAK }
+            \\ EAK $("#secondary-message").html(
+            \\ EAK     "Please complete the CAPTCHA to continue.",
+            \\ EAK );
 
             evaluatedPositions = positions;
             ongoingEvaluation = false;
@@ -297,8 +297,8 @@ function loadReportCards() {
 async function report() {
     // Remove CAPTCHA
     
-    $(".g-recaptcha").css("display", "none");
-    $("#secondary-message").html("");
+    \\ EAK $(".g-recaptcha").css("display", "none");
+    \\ EAK $("#secondary-message").html("");
     $("#evaluation-progress-bar").attr("value", null);
     logAnalysisInfo("Generating report...");
     $("#status-message").css("display", "none");
@@ -317,7 +317,7 @@ async function report() {
                     }
                     return pos;
                 }),
-                captchaToken: grecaptcha.getResponse() || "none",
+                \\ EAK captchaToken: grecaptcha.getResponse() || "none",
             }),
         });
 
